@@ -9,9 +9,9 @@ import os
 def prepare_image(image):
     new_height = int(image.shape[0] * 30 / 100)
     new_width = int(image.shape[1] * 30 / 100)
-    image = cv2.resize(image, (new_width, new_height), cv2.INTER_AREA)
+    compressed_image = cv2.resize(image, (new_width, new_height), cv2.INTER_AREA)
 
-    gray_image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+    gray_image = cv2.cvtColor(compressed_image, cv2.COLOR_RGB2GRAY)
     binary_image = 255 * binary_fill_holes(binary_closing(canny(gray_image, sigma=3), selem=np.ones((20, 20))))
     binary_image = binary_image.astype(np.uint8)
     return binary_image
@@ -102,10 +102,3 @@ def errors_processing(data, number_of_error):
         if not data[1]:
             print('No objects found')
             return 0
-
-
-
-
-
-
-

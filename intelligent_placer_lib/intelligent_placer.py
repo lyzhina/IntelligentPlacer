@@ -203,5 +203,3 @@ def intelligent_placer(path_image):
 
     plt.imshow(compressed_image)
 
-if __name__ == '__main__':
-    intelligent_placer('cases\\case5.jpg')
